@@ -60,27 +60,30 @@ describe('03_separation-of-concerns-demo routes', () => {
 
   it('returns an updated order when provided an ID', async() => {
     await request(app)
-      .post('api/v1/orders')
+      .post('/api/v1/orders')
       .send({ quantity: 4 });
     
     await request(app)
-      .patch('api/v1/orders/1')
+      .patch('/api/v1/orders/1')
       .send({ quantity: 7 });
 
     return request(app)
-      .get('api/v1/orders/1')
+      .get('/api/v1/orders/1')
       .then(res => {
-        expect(res.statusCode).toEqual(204);
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 7
+        });
       });
   });
 
   it('deletes an order when provided an ID, sends 204 err', async() => {
     await request(app)
-      .post('api/v1/orders')
+      .post('/api/v1/orders')
       .send({ quantity: 4 });
 
     return request(app)
-      .get('api/v1/orders/1')
+      .get('/api/v1/orders/1')
       .then(res => {
         expect(res.statusCode).toEqual(204);
       });
