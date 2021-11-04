@@ -43,7 +43,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it.only('given no ID, get returns an array of all orders', async() => {
+  it('given no ID, get returns an array of all orders', async() => {
     await request(app)
       .post('/api/v1/orders')
       .send({ quantity: 10 });
