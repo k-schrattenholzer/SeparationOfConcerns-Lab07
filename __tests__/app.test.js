@@ -28,7 +28,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it.only('given an ID, get returns the order with that ID', async() => {
+  it('given an ID, get returns the order with that ID', async() => {
     await request(app)
       .post('/api/v1/orders')
       .send({ quantity: 14 });
@@ -43,7 +43,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it('given no ID, get returns an array of all orders', async() => {
+  it.only('given no ID, get returns an array of all orders', async() => {
     await request(app)
       .post('/api/v1/orders')
       .send({ quantity: 10 });
@@ -51,10 +51,10 @@ describe('03_separation-of-concerns-demo routes', () => {
     return request(app)
       .get('/api/v1/orders')
       .then(res => {
-        expect(res.body).toEqual({
+        expect(res.body).toEqual(expect.arrayContaining([{
           id: '1',
           quantity: 10
-        });
+        }]));
       });
   });
 
