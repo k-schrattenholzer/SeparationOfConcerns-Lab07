@@ -77,7 +77,7 @@ describe('03_separation-of-concerns-demo routes', () => {
       });
   });
 
-  it('deletes an order when provided an ID, sends 204 err', async() => {
+  it('deletes an order when provided an ID', async() => {
     await request(app)
       .post('/api/v1/orders')
       .send({ quantity: 4 });
@@ -85,7 +85,7 @@ describe('03_separation-of-concerns-demo routes', () => {
     return request(app)
       .get('/api/v1/orders/1')
       .then(res => {
-        expect(res.statusCode).toEqual(204);
+        expect(res.statusCode).toEqual(200);
       });
   });
 });
