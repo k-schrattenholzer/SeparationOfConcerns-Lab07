@@ -27,4 +27,16 @@ describe('03_separation-of-concerns-demo routes', () => {
         });
       });
   });
+
+  it('given an ID, returns the order with that ID', async() => {
+    const order = { id: '1', quantity: 10 };
+    return await request(app)
+      .get(`/api/v1/orders/:${order.id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          id: '1',
+          quantity: 10
+        });
+      });
+  });
 });
